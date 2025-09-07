@@ -7,6 +7,7 @@
   --red-color: #f44336;
   --grey-color: #888;
   --main-transition: 0.3s;
+  --fa-family-classic: "Font Awesome 7 Free";
 }
 
 /* End Variables */
@@ -33,7 +34,7 @@ ul {
     padding: 0;
 }
 ::-webkit-scrollbar {
-    width: 20px;
+    width: 15px;
 }
 ::-webkit-scrollbar-track {
     background-color: #fff;
@@ -154,11 +155,11 @@ ul {
 }
 /* End heading */
 /* Start Dashbords */
-.content .widgets > h1 {
+.main-title {
     position: relative;
     width: fit-content;
 }
-.content .widgets > h1::after {
+.main-title::after {
     content: '';
     position: absolute;
     bottom: 9px;
@@ -306,6 +307,12 @@ ul {
 }
 .news .row span {
     margin-left: auto;
+    font-size: 12px;
+}
+@media (max-width:767px) {
+    .news .row span {
+        margin: unset;
+    }
 }
 /* End news widget */
 /* Start Uploads Widget */
@@ -396,6 +403,9 @@ ul {
     width: 52px;
     height: 52px;
 }
+.social  i:hover {
+    transform: rotate(5deg);
+}
 .social a {
     margin-left: auto;
     margin-right: 10px;
@@ -439,7 +449,7 @@ background-color: rgb(0, 119, 181, 0.3);
 }
 .project-table table {
     border-spacing: 0;
-    width: 100%;
+    min-width: 1000px;
 }
 .project-table table thead {
     background-color: #eee;
@@ -452,11 +462,14 @@ background-color: rgb(0, 119, 181, 0.3);
 }
 .project-table table img {
     width: 32px;
+    height: 32px;
     border-radius: 50%;
     border: 2px solid white;
-    margin: -6px -6px;
 }
 
+.project-table table td img:not(:first-child) {
+    margin-left: -20px;
+}
 .project-table table tr:first-child span {
     background-color: var(--orange-color);
 }
@@ -472,7 +485,342 @@ background-color: rgb(0, 119, 181, 0.3);
 
 /* End Table */
 /* End Dashbords */
-/* End Dashboard of yacoub */
+/* Start Settings */
+.settings-page {
+grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+}
+@media (max-width:767px) {
+    .settings-page {
+        grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    }
+}
+.settings-page .control-box textarea {
+    resize: none;
+    width: 100%;
+    height: 200px;
+}
+
+/* Start Widgets Control */
+.widgets-control label .checkbox {
+    appearance: none;
+    margin: 0;
+    --webkit-appearence: none;
+}
+.widgets-control label .check-mark::before {
+    content: '\2713';
+    font-weight: 900;
+    font-family: 'Font Awesome 7 Free';
+    position: absolute;
+    top: 1px;
+    left: 2px;
+    font-size: 9px;
+    color: white;
+    display: none;
+}
+.widgets-control label .check-mark::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    width: 0;
+    height: 0;
+    background-color: var(--blue-color);
+    transition: var(--main-transition);
+}
+.widgets-control label .checkbox:checked ~ .check-mark::after{
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%) rotate(450deg);
+    transform-origin: center;
+}
+.widgets-control label .checkbox:checked ~ .check-mark::before {
+    display: block;
+    z-index: 1;
+}
+
+.widgets-control label span {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-color: #eee;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    margin-right: 12px;
+    position: relative;
+    transition: var(--main-transition);
+}
+.widgets-control label span:hover,
+.widgets-control label .checkbox:checked ~ span {
+    border-color: var(--blue-color);
+}
+/* End Widgets Control */
+/* Start Backup Man */
+.backup-man label {
+    display: flex;
+}
+.backup-man .checkbox {
+    appearance: none;
+    margin: 0;
+}
+.backup-man .check-mark {
+    display: block;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    position: relative;
+}
+.backup-man .check-mark::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    transition: var(--main-transition);
+    box-sizing: border-box;
+}
+.backup-man .check-mark::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background-color: var(--blue-color);
+    border-radius: 50%;
+    transition: var(--main-transition) width height;
+}
+.backup-man .checkbox:checked + .check-mark::after {
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    display: block;
+}
+.backup-man .servers {
+    grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+    gap: 20px;
+}
+.backup-man .servers i {
+    margin: auto;
+}
+/* End Backup Man */
+/* End Settings */
+/* Start Profile */
+.profile-page .overview img {
+    width: 64px;
+    height: 64px;
+}
+@media (min-width:768px) {
+    .profile-page .overview {
+        align-items: center;
+    }
+}
+.profile-page .overview .progress {
+    width: 100%;
+    height: 4px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background-color: #eee;
+    overflow: hidden;
+}
+.profile-page .overview .progress span {
+    position: absolute;
+    left: 0;
+    background-color: var(--blue-color);
+    height: 100%;
+}
+@media (max-width:767px) {
+    .profile-page .overview .rating-box {
+        border: none;
+    }
+}
+.profile-page .overview .row:not(:first-child) {
+    border-top: 1px solid #eee;
+    transition: var(--main-transition);
+}
+.profile-page .overview .row:hover {
+    background-color: #f9f9f9;
+}
+@media (max-width:767px) {
+    .profile-page .row span {
+    text-align: center;
+}   
+}
+@media (max-width:991px) {
+    .profile-page .activities box {
+        flex-direction: column;
+    }
+}
+.profile-page .activities img {
+    width: 64px;
+    height: 64px;
+}
+@media (min-width:992px) {
+    .profile-page .activities .time {
+    margin-left: auto;
+}
+}
+
+/* End Profile */
+/* Start Projects */
+.projects-page {
+    grid-template-columns: repeat(auto-fill,minmax(450px,1fr));
+    gap: 20px;
+}
+@media (max-width:767px) {
+    .projects-page {
+        grid-template-columns: 1fr;
+
+    }
+}
+.projects-page h2 {
+    width: 70%;
+}
+.projects-page .box img {
+    width: 32px;
+    height: 32px;
+    border: 1px solid white;
+    margin-left: -10px;
+}
+.projects-page .box .intro span {
+    position: absolute;
+    top: 0px;
+    right: -10px;
+    font-size: 12px;
+}
+.projects-page .skills {
+    overflow: auto;
+    justify-content: flex-end;
+}
+.projects-page .price .progress {
+    width: 50%;
+    height: 6px;
+    background-color: #eee;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.projects-page .price .progress span {
+    position: absolute;
+    height: 100%;
+}
+/* End Projects */
+/* Start Courses */
+.courses-page {
+    grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+    gap: 20px;
+}
+@media (max-width:767px) {
+    .courses-page {
+    grid-template-columns:1fr;
+}
+}
+.courses-page .box {
+    overflow: hidden;
+}
+.courses-page .box > img:last-of-type {
+    width: 64px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: 3px solid white;
+}
+.courses-page .box > img:first-of-type {
+    width: 100%;
+}
+.courses-page .box .btn-shape {
+    position: absolute;
+    bottom: -14.5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+/* End Courses */
+/* Start Friends */
+.friends-page {
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+    gap: 20px;
+}
+@media (max-width:767px) {
+    .friends-page {
+        grid-template-columns: 1fr;
+    }
+}
+.friends-page img {
+    width: 100px;
+    height: 100px;
+}
+.friends-page .contact {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+}
+.friends-page .contact i {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+.friends-page .info > span {
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--orange-color);
+    opacity: 0.3;
+    display: none;
+}
+.friends-page .vip .info > span {
+    display: block;
+}
+/* End Friends */
+/* Start Files */
+.files-page {
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.files-page .statistics {
+    flex-grow: 0.1;
+}
+.files-page .statistics .row i {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.files-page .statistics > span {
+    margin: auto;
+}
+.files-page .container{
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+.files-page .box .preview img {
+    width: 64px;
+    margin-top: 30px;
+}
+.files-page .box .preview img:hover {
+    transform: rotate(10deg);
+}
+.files-page .box .preview i,
+.files-page .box .preview span.c-gray {
+    position: absolute;
+    left: 0;
+}
+.files-page .box .preview span.c-gray {
+    bottom: 10px;
+}
+
+
+/* End Files */
+/* Start Plans */
+.plans-page {
+    grid-template-columns: repeat(auto-fill,minmax(450px,1fr));
+    gap: 20px;
+}
+@media (max-width:767px) {
+    .plans-page {
+        grid-template-columns: 1fr;
+    }
+    
+}
+/* End Plans */
 /* Start Animations */
 @keyframes hide-and-appear {
     50% {
