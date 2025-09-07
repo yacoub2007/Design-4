@@ -449,7 +449,7 @@ background-color: rgb(0, 119, 181, 0.3);
 }
 .project-table table {
     border-spacing: 0;
-    min-width: 1000px;
+    min-width: 1300px;
 }
 .project-table table thead {
     background-color: #eee;
